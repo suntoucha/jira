@@ -5,11 +5,24 @@ import (
 )
 
 type Issue struct {
-	ID  string `json:"id"`
-	Key string `json:"key"`
+	Self string `json:"self"`
+	ID   string `json:"id"`
+	Key  string `json:"key"`
 }
 
 type IssueList []Issue
+
+func IssueFromJson(raw []byte) (Issue, error) {
+	var (
+		res Issue
+	)
+
+	if err := json.Unmarshal(raw, &res); err != nil {
+		return Issue{}, err
+	}
+
+	return res, nil
+}
 
 func IssueListFromJson(raw []byte) (IssueList, error) {
 	var (

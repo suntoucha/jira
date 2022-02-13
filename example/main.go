@@ -7,7 +7,7 @@ import (
 
 var (
 	HOST, USER, TOKEN string
-	PRJKEY            string
+	PRJKEY, ISSUEKEY            string
 )
 
 func main() {
@@ -21,6 +21,13 @@ func main() {
 		return
 	}
 	fmt.Printf("PROJECT: %#v\n", prj)
+
+	iss, err := cli.Issue(ISSUEKEY)
+	if err != nil {
+		fmt.Println("Issue error:", err)
+		return
+	}
+	fmt.Printf("ISSUE: %#v\n", iss)
 
 	cur := prj.Issue()
 	list, err := cli.IssueCursor(&cur)

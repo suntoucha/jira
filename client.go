@@ -52,6 +52,20 @@ func (cli *Client) Project(key string) (Project, error) {
 	return prj, nil
 }
 
+func (cli *Client) Issue(key string) (Issue, error) {
+	raw, err := cli.get("/rest/api/2/issue/" + key)
+	if err != nil {
+		return Issue{}, err
+	}
+
+	iss, err := IssueFromJson(raw)
+	if err != nil {
+		return Issue{}, err
+	}
+
+	return iss, nil
+}
+
 func (cli *Client) IssueCursor(cur *IssueCursor) (IssueList, error) {
 	raw, err := cli.get(cur.Resourse())
 	if err != nil {

@@ -6,6 +6,7 @@ import (
 	"testing"
 )
 
+//https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-projects/#api-rest-api-2-project-search-get
 //go:embed project1.json
 var projectJson1 string
 
@@ -29,7 +30,7 @@ func TestProject(t *testing.T) {
 	for _, x := range testcase {
 		tmp, err := ProjectFromJson([]byte(x.Input))
 		if err != nil {
-			t.Errorf("ProjectListFromJson error: %v", err)
+			t.Errorf("ProjectFromJson error: %v", err)
 			continue
 		}
 
