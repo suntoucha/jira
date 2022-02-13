@@ -22,17 +22,15 @@ func main() {
 	}
 	fmt.Printf("PROJECT: %#v\n", prj)
 
-
-
-		cur := prj.Issue()
-		list, err := cli.IssueCursor(&cur)
-		for len(list) > 0 && err == nil {
-			for _, iss := range list {
-				fmt.Printf("\t%#v\n", iss)
-			}
-			list, err = cli.IssueCursor(&cur)
+	cur := prj.Issue()
+	list, err := cli.IssueCursor(&cur)
+	for len(list) > 0 && err == nil {
+		for _, iss := range list {
+			fmt.Printf("\t%#v\n", iss)
 		}
-		if err != nil {
-			fmt.Println("Issue error:", err)
-		}
+		list, err = cli.IssueCursor(&cur)
+	}
+	if err != nil {
+		fmt.Println("Issue error:", err)
+	}
 }
