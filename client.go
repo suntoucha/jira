@@ -39,6 +39,10 @@ func (cli *Client) get(resource string) ([]byte, error) {
 }
 
 func (cli *Client) Project(key string) (Project, error) {
+	if err := IsValidKey(key); err != nil {
+		return Project{}, err
+	}
+
 	raw, err := cli.get("/rest/api/2/project/" + key + "/?expand=description,lead,issueTypes,url,projectKeys,permissions,insight")
 	if err != nil {
 		return Project{}, err
@@ -53,6 +57,10 @@ func (cli *Client) Project(key string) (Project, error) {
 }
 
 func (cli *Client) Issue(key string) (Issue, error) {
+	if err := IsValidKey(key); err != nil {
+		return Issue{}, err
+	}
+
 	raw, err := cli.get("/rest/api/2/issue/" + key)
 	if err != nil {
 		return Issue{}, err
