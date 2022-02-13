@@ -38,18 +38,18 @@ func (cli *Client) get(resource string) ([]byte, error) {
 	return bodyText, nil
 }
 
-func (cli *Client) ProjectList() (ProjectList, error) {
-	raw, err := cli.get("/rest/api/2/project?expand=description,lead,issueTypes,url,projectKeys,permissions,insight")
+func (cli *Client) Project(key string) (Project, error) {
+	raw, err := cli.get("/rest/api/2/project/" + key + "/?expand=description,lead,issueTypes,url,projectKeys,permissions,insight")
 	if err != nil {
-		return nil, err
+		return Project{}, err
 	}
 
-	list, err := ProjectListFromJson(raw)
+	prj, err := ProjectFromJson(raw)
 	if err != nil {
-		return nil, err
+		return Project{}, err
 	}
 
-	return list, nil
+	return prj, nil
 }
 
 func (cli *Client) IssueCursor(cur *IssueCursor) (IssueList, error) {

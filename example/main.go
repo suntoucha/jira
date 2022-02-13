@@ -7,6 +7,7 @@ import (
 
 var (
 	HOST, USER, TOKEN string
+	PRJKEY            string
 )
 
 func main() {
@@ -14,16 +15,16 @@ func main() {
 
 	cli := jira.Client{Host: HOST, User: USER, Token: TOKEN}
 
-	list, err := cli.ProjectList()
+	prj, err := cli.Project(PRJKEY)
 	if err != nil {
-		fmt.Println("Project list error:", err)
+		fmt.Println("Project error:", err)
 		return
 	}
+	fmt.Printf("PROJECT: %#v\n", prj)
 
-	for _, x := range list {
-		fmt.Printf("%#v\n\n", x)
 
-		cur := x.Issue()
+
+		cur := prj.Issue()
 		list, err := cli.IssueCursor(&cur)
 		for len(list) > 0 && err == nil {
 			for _, iss := range list {
@@ -34,5 +35,4 @@ func main() {
 		if err != nil {
 			fmt.Println("Issue error:", err)
 		}
-	}
 }

@@ -6,25 +6,22 @@ import (
 
 type Project struct {
 	Self        string `json:"self"`
-	Expand      string `json:"expand"`
 	ID          string `json:"id"`
 	Key         string `json:"key"`
 	Name        string `json:"name"`
 	Description string `json:"description"`
 }
 
-type ProjectList []Project
-
-func ProjectListFromJson(raw []byte) (ProjectList, error) {
+func ProjectFromJson(raw []byte) (Project, error) {
 	var (
-		list ProjectList
+		prj Project
 	)
 
-	if err := json.Unmarshal(raw, &list); err != nil {
-		return nil, err
+	if err := json.Unmarshal(raw, &prj); err != nil {
+		return Project{}, err
 	}
 
-	return list, nil
+	return prj, nil
 }
 
 func (p *Project) Issue() IssueCursor {
