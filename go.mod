@@ -1,3 +1,3 @@
-module github.com/suntoucha/jira
+module jira
 
 go 1.17

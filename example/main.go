@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/suntoucha/jira"
 )
 
 var (
@@ -11,7 +12,7 @@ var (
 func main() {
 	fmt.Println("Hello World")
 
-	cli := Client{Host: HOST, User: USER, Token: TOKEN}
+	cli := jira.Client{Host: HOST, User: USER, Token: TOKEN}
 
 	list, err := cli.ProjectList()
 	if err != nil {
