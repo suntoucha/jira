@@ -3,6 +3,7 @@ package jira
 import (
 	"io/ioutil"
 	"net/http"
+	"strconv"
 )
 
 type Client struct {
@@ -74,17 +75,21 @@ func (cli *Client) Issue(key string) (Issue, error) {
 	return iss, nil
 }
 
-func (cli *Client) IssueCursor(cur *IssueCursor) (IssueList, error) {
-	raw, err := cli.get(cur.Resourse())
-	if err != nil {
-		return nil, err
+func (cli *Client) IssueByProject(key string, startAt int, maxResults int) (IssueResult, error) {
+	if err := IsValidKey(key); err != nil {
+		return IssueResult{}, err
 	}
 
-	list, err := IssueListFromJson(raw)
+	raw, err := cli.get("/rest/api/2/search?jql=project=" + key + "+order+by+key&startAt=" + strconv.Itoa(startAt) + "&maxResults=" + strconv.Itoa(maxResults))
 	if err != nil {
-		return nil, err
+		return IssueResult{}, err
+	}	
+
+	res, err := IssueResultFromJson(raw)
+	if err != nil {
+		return IssueResult{}, err
 	}
 
-	cur.Next()
-	return list, nil
-}
+	return res, nil
+} 
+

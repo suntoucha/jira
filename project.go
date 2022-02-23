@@ -23,7 +23,3 @@ func ProjectFromJson(raw []byte) (Project, error) {
 
 	return prj, nil
 }
-
-func (p *Project) Issue() IssueCursor {
-	return IssueCursor{ProjectKey: p.Key, StartAt: 0, MaxResults: 10}
-}

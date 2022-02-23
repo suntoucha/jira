@@ -62,15 +62,3 @@ func IssueFromJson(raw []byte) (Issue, error) {
 
 	return res, nil
 }
-
-func IssueListFromJson(raw []byte) (IssueList, error) {
-	var (
-		res IssueResult
-	)
-
-	if err := json.Unmarshal(raw, &res); err != nil {
-		return nil, err
-	}
-
-	return res.Issues, nil
-}

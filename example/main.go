@@ -29,14 +29,22 @@ func main() {
 	}
 	fmt.Printf("ISSUE: %#v\n", iss)
 
-	cur := prj.Issue()
-	list, err := cli.IssueCursor(&cur)
-	for len(list) > 0 && err == nil {
-		for _, iss := range list {
-			fmt.Printf("\t%#v\n", iss)
+
+	startAt := 0
+	maxResults := 10
+
+	res, err := cli.IssueByProject(PRJKEY, startAt, maxResults)
+	for err == nil && len(res.Issues) > 0 {
+		list, err := res.IssueList()
+		if err != nil {
+			fmt.Println("Issue list error:", err)
+			return
 		}
-		list, err = cli.IssueCursor(&cur)
+		fmt.Println(list)
+		startAt += maxResults
+		res, err = cli.IssueByProject(PRJKEY, startAt, maxResults)
 	}
+
 	if err != nil {
 		fmt.Println("Issue error:", err)
 	}
