@@ -7,7 +7,7 @@ import (
 
 var (
 	HOST, USER, TOKEN string
-	PRJKEY, ISSUEKEY            string
+	PRJKEY, ISSUEKEY  string
 )
 
 func main() {

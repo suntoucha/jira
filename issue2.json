@@ -1,0 +1,209 @@
+{
+   "expand":"renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations,customfield_10702.requestTypePractice",
+   "id":"20281",
+   "self":"https://xxx.atlassian.net/rest/api/2/issue/20281",
+   "key":"APPS-22",
+   "fields":{
+      "statuscategorychangedate":"2019-09-12T18:06:02.445+0300",
+      "issuetype":{
+         "self":"https://xxx.atlassian.net/rest/api/2/issuetype/10101",
+         "id":"10101",
+         "description":"Bugs track problems or errors.",
+         "iconUrl":"https://xxx.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10303?size=medium",
+         "name":"Баг",
+         "subtask":false,
+         "avatarId":10303,
+         "entityId":"b83a3341-6738-4e2d-85c2-92cbe4d5f717",
+         "hierarchyLevel":0
+      },
+      "timespent":null,
+      "project":{
+         "self":"https://xxx.atlassian.net/rest/api/2/project/10401",
+         "id":"10401",
+         "key":"APPS",
+         "name":"Apps",
+         "projectTypeKey":"software",
+         "simplified":true,
+         "avatarUrls":{
+            "48x48":"https://xxx.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10208",
+            "24x24":"https://xxx.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10208?size=small",
+            "16x16":"https://xxx.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10208?size=xsmall",
+            "32x32":"https://xxx.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10208?size=medium"
+         }
+      },
+      "fixVersions":[
+         
+      ],
+      "aggregatetimespent":null,
+      "resolution":{
+         "self":"https://xxx.atlassian.net/rest/api/2/resolution/10000",
+         "id":"10000",
+         "description":"Work has been completed on this issue.",
+         "name":"Done"
+      },
+      "customfield_10500":null,
+      "customfield_10700":null,
+      "customfield_10702":null,
+      "customfield_10703":[
+         
+      ],
+      "resolutiondate":"2018-07-16T14:19:48.037+0300",
+      "customfield_10704":null,
+      "customfield_10705":null,
+      "customfield_10706":null,
+      "customfield_10707":null,
+      "workratio":-1,
+      "watches":{
+         "self":"https://xxx.atlassian.net/rest/api/2/issue/APPS-22/watchers",
+         "watchCount":1,
+         "isWatching":true
+      },
+      "issuerestriction":{
+         "issuerestrictions":{
+            
+         },
+         "shouldDisplay":true
+      },
+      "lastViewed":null,
+      "created":"2018-05-02T20:41:01.285+0300",
+      "priority":{
+         "self":"https://xxx.atlassian.net/rest/api/2/priority/3",
+         "iconUrl":"https://xxx.com/images/ico/a2473e6d.fav72.png",
+         "name":"Major",
+         "id":"3"
+      },
+      "customfield_10300":{
+         "hasEpicLinkFieldDependency":false,
+         "showField":false,
+         "nonEditableReason":{
+            "reason":"PLUGIN_LICENSE_ERROR",
+            "message":"The Parent Link is only available to Jira Premium users."
+         }
+      },
+      "customfield_10025":null,
+      "labels":[
+         
+      ],
+      "timeestimate":null,
+      "aggregatetimeoriginalestimate":null,
+      "versions":[
+         
+      ],
+      "issuelinks":[
+         
+      ],
+      "assignee":{
+         "self":"https://xxx.atlassian.net/rest/api/2/user?accountId=1",
+         "accountId":"accountId1",
+         "avatarUrls":{
+            "48x48":"https://secure.gravatar.com/avatar/c9253033c94e7bb2278e44394c78f1d8?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FAK-1.png",
+            "24x24":"https://secure.gravatar.com/avatar/c9253033c94e7bb2278e44394c78f1d8?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FAK-1.png",
+            "16x16":"https://secure.gravatar.com/avatar/c9253033c94e7bb2278e44394c78f1d8?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FAK-1.png",
+            "32x32":"https://secure.gravatar.com/avatar/c9253033c94e7bb2278e44394c78f1d8?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FAK-1.png"
+         },
+         "displayName":"Alexey Ka",
+         "active":true,
+         "timeZone":"Europe/Moscow",
+         "accountType":"atlassian"
+      },
+      "updated":"2018-07-16T14:19:48.041+0300",
+      "status":{
+         "self":"https://xxx.atlassian.net/rest/api/2/status/10112",
+         "description":"",
+         "iconUrl":"https://xxx.atlassian.net/",
+         "name":"Готово",
+         "id":"10112",
+         "statusCategory":{
+            "self":"https://xxx.atlassian.net/rest/api/2/statuscategory/3",
+            "id":3,
+            "key":"done",
+            "colorName":"green",
+            "name":"Done"
+         }
+      },
+      "components":[
+         
+      ],
+      "timeoriginalestimate":null,
+      "description":"Some description here",
+      "customfield_10011":"0|i003ke:",
+      "timetracking":{
+         
+      },
+      "customfield_10600":null,
+      "customfield_10006":null,
+      "customfield_10007":null,
+      "security":null,
+      "aggregatetimeestimate":null,
+      "attachment":[
+         
+      ],
+      "summary":"Summary here",
+      "creator":{
+         "self":"https://xxx.atlassian.net/rest/api/2/user?accountId=3",
+         "accountId":"accountId3",
+         "emailAddress":"aaa@gmail.com",
+         "avatarUrls":{
+            "48x48":"https://secure.gravatar.com/avatar/8274782cdd7f71bc91cf6535c7b61836?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSK-1.png",
+            "24x24":"https://secure.gravatar.com/avatar/8274782cdd7f71bc91cf6535c7b61836?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSK-1.png",
+            "16x16":"https://secure.gravatar.com/avatar/8274782cdd7f71bc91cf6535c7b61836?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSK-1.png",
+            "32x32":"https://secure.gravatar.com/avatar/8274782cdd7f71bc91cf6535c7b61836?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSK-1.png"
+         },
+         "displayName":"S K",
+         "active":true,
+         "timeZone":"Europe/Moscow",
+         "accountType":"atlassian"
+      },
+      "subtasks":[
+         
+      ],
+      "reporter":{
+         "self":"https://xxx.atlassian.net/rest/api/2/user?accountId=2",
+         "accountId":"accountId2",
+         "emailAddress":"xxx@gmail.com",
+         "avatarUrls":{
+            "48x48":"https://secure.gravatar.com/avatar/8274782cdd7f71bc91cf6535c7b61836?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSK-1.png",
+            "24x24":"https://secure.gravatar.com/avatar/8274782cdd7f71bc91cf6535c7b61836?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSK-1.png",
+            "16x16":"https://secure.gravatar.com/avatar/8274782cdd7f71bc91cf6535c7b61836?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSK-1.png",
+            "32x32":"https://secure.gravatar.com/avatar/8274782cdd7f71bc91cf6535c7b61836?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSK-1.png"
+         },
+         "displayName":"Serge Ku",
+         "active":true,
+         "timeZone":"Europe/Moscow",
+         "accountType":"atlassian"
+      },
+      "customfield_10000":"1_*:*_1_*:*_5443556130_*|*_10112_*:*_1_*:*_0_*|*_10100_*:*_1_*:*_1013570630",
+      "aggregateprogress":{
+         "progress":0,
+         "total":0
+      },
+      "customfield_10001":null,
+      "customfield_10002":null,
+      "customfield_10200":null,
+      "customfield_10003":null,
+      "customfield_10400":"{}",
+      "environment":null,
+      "duedate":null,
+      "progress":{
+         "progress":0,
+         "total":0
+      },
+      "comment":{
+         "comments":[
+            
+         ],
+         "self":"https://xxx.atlassian.net/rest/api/2/issue/20281/comment",
+         "maxResults":0,
+         "total":0,
+         "startAt":0
+      },
+      "worklog":{
+         "startAt":0,
+         "maxResults":20,
+         "total":0,
+         "worklogs":[
+            
+         ]
+      }
+   }
+}
