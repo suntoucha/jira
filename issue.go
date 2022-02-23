@@ -12,17 +12,17 @@ type Issue struct {
 }
 
 type IssueFields struct {
-	Description string      `json:"description"`
-	Summary     string      `json:"summary"`
-	Project     Project     `json:"project"`
-	Assignee    User        `json:"assignee"`
-	Reporter    User        `json:"reporter"`
-	Creator     User        `json:"creator"`
-	Status      IssueStatus `json::status:`
-	IssueType   IssueType   `json:"issuetype"`
-	Created     Datetime    `json:"created"`
-	//Updated     Datetime    `json:"updated"`
-	ResolutionDate Datetime `json:"resolutiondate"`
+	Description    string         `json:"description"`
+	Summary        string         `json:"summary"`
+	Project        Project        `json:"project"`
+	Assignee       User           `json:"assignee"`
+	Reporter       User           `json:"reporter"`
+	Creator        User           `json:"creator"`
+	Status         IssueStatus    `json::status:`
+	IssueType      IssueType      `json:"issuetype"`
+	Created        Datetime       `json:"created"`
+	Updated        DatetimeIgnore `json:"updated"`
+	ResolutionDate Datetime       `json:"resolutiondate"`
 }
 
 type IssueType struct {

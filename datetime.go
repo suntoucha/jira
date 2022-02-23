@@ -40,8 +40,31 @@ func NewDatetime(s string) (Datetime, error) {
 	return tmp, nil
 }
 
-func NewDatetimeIgnoreError(s string) Datetime {
+func NewDatetimeMustCompile(s string) Datetime {
 	tmp, _ := NewDatetime(s)
 
+	return tmp
+}
+
+type DatetimeIgnore struct {
+	time.Time
+}
+
+func (dt *DatetimeIgnore) UnmarshalJSON(b []byte) error {
+	s := strings.Trim(string(b), "\"")
+	if s == "null" {
+		return nil
+	}
+
+	dt.Time, _ = time.Parse(DATETIME_LAYOUT, s)
+	return nil
+}
+
+func NewDatetimeIgnore(s string) DatetimeIgnore {
+	var (
+		tmp DatetimeIgnore
+	)
+
+	tmp.Time, _ = time.Parse(DATETIME_LAYOUT, s)
 	return tmp
 }
