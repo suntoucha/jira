@@ -4,12 +4,11 @@ import (
 	"encoding/json"
 )
 
-
 type IssueResult struct {
-	Expand    string    `json:"expand"`
-	StartAt   int       `json:"startAt"`
-	MaxResult int       `json:"maxResults"`
-	Total     int       `json:"total"`
+	Expand    string            `json:"expand"`
+	StartAt   int               `json:"startAt"`
+	MaxResult int               `json:"maxResults"`
+	Total     int               `json:"total"`
 	Issues    []json.RawMessage `json:"issues"`
 }
 

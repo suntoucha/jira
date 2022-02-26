@@ -7,7 +7,7 @@ import (
 )
 
 //https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-users/#api-rest-api-2-user-get
-//go:embed user1.json
+//go:embed test_json/user1.json
 var userJson1 string
 
 func TestUser(t *testing.T) {

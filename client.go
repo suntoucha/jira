@@ -83,7 +83,7 @@ func (cli *Client) IssueByProject(key string, startAt int, maxResults int) (Issu
 	raw, err := cli.get("/rest/api/2/search?jql=project=" + key + "+order+by+key&startAt=" + strconv.Itoa(startAt) + "&maxResults=" + strconv.Itoa(maxResults))
 	if err != nil {
 		return IssueResult{}, err
-	}	
+	}
 
 	res, err := IssueResultFromJson(raw)
 	if err != nil {
@@ -91,5 +91,4 @@ func (cli *Client) IssueByProject(key string, startAt int, maxResults int) (Issu
 	}
 
 	return res, nil
-} 
-
+}

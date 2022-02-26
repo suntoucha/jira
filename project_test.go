@@ -7,7 +7,7 @@ import (
 )
 
 //https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-projects/#api-rest-api-2-project-search-get
-//go:embed project1.json
+//go:embed test_json/project1.json
 var projectJson1 string
 
 func TestProject(t *testing.T) {

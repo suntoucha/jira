@@ -7,11 +7,11 @@ import (
 )
 
 //https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-issues/#api-rest-api-2-issue-issueidorkey-get
-//go:embed issue1.json
+//go:embed test_json/issue1.json
 var issueJson1 string
 
 //Cassby sample issue
-//go:embed issue2.json
+//go:embed test_json/issue2.json
 var issueJson2 string
 
 func TestIssue(t *testing.T) {
