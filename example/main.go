@@ -30,22 +30,16 @@ func main() {
 	fmt.Printf("ISSUE: %#v\n", iss)
 
 
-	startAt := 0
-	maxResults := 10
+	var (
+		me MyExporter
+	)
+	cli.ExportIssueByProject(PRJKEY, 10, me)
+}
 
-	res, err := cli.IssueByProject(PRJKEY, startAt, maxResults)
-	for err == nil && len(res.Issues) > 0 {
-		list, err := res.IssueList()
-		if err != nil {
-			fmt.Println("Issue list error:", err)
-			return
-		}
-		fmt.Println(list)
-		startAt += maxResults
-		res, err = cli.IssueByProject(PRJKEY, startAt, maxResults)
-	}
+type MyExporter struct {
+}
 
-	if err != nil {
-		fmt.Println("Issue error:", err)
-	}
+func (x MyExporter) Export(list []jira.Issue, startAt int, maxResult int, total int) error {
+	fmt.Printf("startAt %v, maxResult %v, total %v, issue-len %v\n", startAt, maxResult, total, len(list))
+	return nil
 }
