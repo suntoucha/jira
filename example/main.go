@@ -29,7 +29,6 @@ func main() {
 	}
 	fmt.Printf("ISSUE: %#v\n", iss)
 
-
 	var (
 		me MyExporter
 	)
@@ -39,7 +38,7 @@ func main() {
 type MyExporter struct {
 }
 
-func (x MyExporter) Export(list []jira.Issue, startAt int, maxResult int, total int) error {
+func (x MyExporter) Export(list jira.IssueList, startAt int, maxResult int, total int) error {
 	fmt.Printf("startAt %v, maxResult %v, total %v, issue-len %v\n", startAt, maxResult, total, len(list))
 	return nil
 }

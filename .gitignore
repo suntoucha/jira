@@ -1,3 +1,5 @@
 .DS_Store
 example/secret.go
 example/example
+pgexporter/secret.go
+pgexporter/pgexporter

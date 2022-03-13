@@ -9,6 +9,7 @@ type Issue struct {
 	Self   string      `json:"self"`
 	Key    string      `json:"key"`
 	Fields IssueFields `json:"fields"`
+	Raw    string      `json:"-"`
 }
 
 type IssueFields struct {
@@ -59,6 +60,7 @@ func IssueFromJson(raw []byte) (Issue, error) {
 	if err := json.Unmarshal(raw, &res); err != nil {
 		return Issue{}, err
 	}
+	res.Raw = string(raw)
 
 	return res, nil
 }

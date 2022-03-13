@@ -34,6 +34,7 @@ func TestIssue(t *testing.T) {
 						Name: "Example",
 					},
 				},
+				Raw: issueJson1,
 			},
 		},
 		{
@@ -99,6 +100,7 @@ func TestIssue(t *testing.T) {
 					Updated:        NewDatetimeIgnore("2018-07-16T14:19:48.041+0300"),
 					ResolutionDate: NewDatetimeMustCompile("2018-07-16T14:19:48.037+0300"),
 				},
+				Raw: issueSqlJson2,
 			},
 		},
 	}
