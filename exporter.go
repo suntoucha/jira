@@ -1,5 +1,9 @@
 package jira
 
+import (
+	"encoding/json"
+)
+
 type Exporter interface {
-	Export(list IssueList, startAt int, maxResult int, total int) error
+	Export(raw json.RawMessage, index int, total int) error
 }

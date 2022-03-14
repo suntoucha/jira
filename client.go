@@ -98,11 +98,9 @@ func (cli *Client) ExportIssueByProject(key string, maxResults int, e Exporter) 
 	res, err := cli.IssueByProject(key, startAt, maxResults)
 
 	for err == nil && len(res.Issues) > 0 {
-		list, err := res.IssueList()
-		if err != nil {
-			return err
+		for i, raw := range res.Issues {
+			e.Export(raw, startAt+i, res.Total)
 		}
-		e.Export(list, res.StartAt, res.MaxResult, res.Total)
 
 		startAt += maxResults
 		res, err = cli.IssueByProject(key, startAt, maxResults)

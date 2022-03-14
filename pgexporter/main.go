@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
@@ -10,8 +11,8 @@ import (
 
 var (
 	HOST, USER, TOKEN string
-	PRJKEY, ISSUEKEY  string
 	PGSQL             string
+	PRJLIST           []string
 )
 
 func main() {
@@ -27,26 +28,39 @@ func main() {
 	}
 
 	me := MyExporter{DB: db}
-	cli.ExportIssueByProject(PRJKEY, 100, me)
+	for _, x := range PRJLIST {
+		cli.ExportIssueByProject(x, 100, me)
+	}
 }
 
 type MyExporter struct {
 	DB *sqlx.DB
 }
 
-func (me MyExporter) Export(list jira.IssueList, startAt int, maxResult int, total int) error {
-	ins := `insert into issue(key, project_key, description, summary, type_id, type_name, is_subtask, status_id, status_name, assignee_email, reporter_email, dt_created, dt_updated, dt_resolution, raw) 
-		values(:key, :project_key, :description, :summary, :type_id, :type_name, :is_subtask, :status_id, :status_name, :assignee_email, :reporter_email, :dt_created, :dt_updated, :dt_resolution, :raw);`
+type IssueExport struct {
+	Key string          `db:"key"`
+	Raw json.RawMessage `db:"raw"`
+}
 
-	for _, x := range list {
-		tmp := jira.IssueToSql(x)
-		_, err := me.DB.NamedExec(ins, tmp)
-		if err != nil {
-			fmt.Println("Insert error:", err)
-			return err
-		}
+func (me MyExporter) Export(raw json.RawMessage, index int, total int) error {
+	ins := `insert into issue(key, raw) values(:key, :raw);`
+
+	tmp, err := jira.IssueFromJson(raw)
+	if err != nil {
+		fmt.Println("IssueFromJson error:", err)
+		return err
 	}
 
-	fmt.Printf("[%v] startAt %v, maxResult %v, total %v, issue-len %v\n", time.Now().Format("2006-01-02 15:04:05"), startAt, maxResult, total, len(list))
+	exp := IssueExport{Key: tmp.Key, Raw: raw}
+	_, err = me.DB.NamedExec(ins, exp)
+	if err != nil {
+		fmt.Println("Insert error:", err)
+		return err
+	}
+
+	ii := index / 100
+	if ii*100 == index {
+		fmt.Printf("[%v] %v index %v, total %v\n", time.Now().Format("2006-01-02 15:04:05"), tmp.Fields.Project.Key, index, total)
+	}
 	return nil
 }
