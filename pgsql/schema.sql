@@ -5,7 +5,7 @@ create table issue_raw (
 );
 
 drop table if exists issue;
-create table issue_flat (
+create table issue (
 	key varchar primary key,
 	project varchar not null,
 	description varchar not null,

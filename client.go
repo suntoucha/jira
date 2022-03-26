@@ -92,19 +92,3 @@ func (cli *Client) IssueByProject(key string, startAt int, maxResults int) (Jira
 
 	return res, nil
 }
-
-func (cli *Client) ExportIssueByProject(key string, maxResults int, e Exporter) error {
-	startAt := 0
-	res, err := cli.IssueByProject(key, startAt, maxResults)
-
-	for err == nil && len(res.Issues) > 0 {
-		for i, raw := range res.Issues {
-			e.Export(raw, startAt+i, res.Total)
-		}
-
-		startAt += maxResults
-		res, err = cli.IssueByProject(key, startAt, maxResults)
-	}
-
-	return err
-}

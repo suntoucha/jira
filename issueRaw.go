@@ -1,4 +1,4 @@
-package pgsql
+package jira
 
 import (
 	"github.com/jmoiron/sqlx"

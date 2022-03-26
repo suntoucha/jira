@@ -1,12 +1,11 @@
-package pgsql
+package jira
 
 import (
 	"github.com/jmoiron/sqlx"
-	"github.com/suntoucha/jira"
 	"time"
 )
 
-type IssueFlat struct {
+type Issue struct {
 	Key         string    `db:"key"`
 	Project     string    `db:"project"`
 	Description string    `db:"description"`
@@ -23,8 +22,8 @@ type IssueFlat struct {
 	Resolution  time.Time `db:"dt_resolution"`
 }
 
-func IssueToFlat(i jira.JiraIssue) IssueFlat {
-	var x IssueFlat
+func JiraToIssue(i JiraIssue) Issue {
+	var x Issue
 
 	x.Key = i.Key
 	x.Project = i.Fields.Project.Key
@@ -44,12 +43,12 @@ func IssueToFlat(i jira.JiraIssue) IssueFlat {
 	return x
 }
 
-type IssueFlatTable struct {
+type IssueTable struct {
 	DB *sqlx.DB
 }
 
-func (t *IssueFlatTable) Insert(x IssueFlat) error {
-	ins := `insert into issue_flat(key, project, description, summary, type, type_name, is_subtask, status, status_name, assignee, reporter, dt_created, dt_updated, dt_resolution) 
+func (t *IssueTable) Insert(x Issue) error {
+	ins := `insert into issue(key, project, description, summary, type, type_name, is_subtask, status, status_name, assignee, reporter, dt_created, dt_updated, dt_resolution) 
 		values(:key, :project, :description, :summary, :type, :type_name, :is_subtask, :status, :status_name, :assignee, :reporter, :dt_created, :dt_updated, :dt_resolution);`
 
 	if _, err := t.DB.NamedExec(ins, x); err != nil {
