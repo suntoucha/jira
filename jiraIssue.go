@@ -14,7 +14,7 @@ type JiraIssue struct {
 type JiraIssueFields struct {
 	Description    string          `json:"description"`
 	Summary        string          `json:"summary"`
-	Project        Project         `json:"project"`
+	Project        JiraProject         `json:"project"`
 	Assignee       JiraUser        `json:"assignee"`
 	Reporter       JiraUser        `json:"reporter"`
 	Creator        JiraUser        `json:"creator"`

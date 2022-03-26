@@ -39,19 +39,19 @@ func (cli *Client) get(resource string) ([]byte, error) {
 	return bodyText, nil
 }
 
-func (cli *Client) Project(key string) (Project, error) {
+func (cli *Client) Project(key string) (JiraProject, error) {
 	if err := IsValidKey(key); err != nil {
-		return Project{}, err
+		return JiraProject{}, err
 	}
 
 	raw, err := cli.get("/rest/api/2/project/" + key + "/?expand=description,lead,issueTypes,url,projectKeys,permissions,insight")
 	if err != nil {
-		return Project{}, err
+		return JiraProject{}, err
 	}
 
-	prj, err := ProjectFromJson(raw)
+	prj, err := JiraProjectFromJson(raw)
 	if err != nil {
-		return Project{}, err
+		return JiraProject{}, err
 	}
 
 	return prj, nil

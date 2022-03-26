@@ -27,7 +27,7 @@ func TestJiraIssue(t *testing.T) {
 				Key:  "ED-1",
 				Fields: JiraIssueFields{
 					Description: "Main order flow broken",
-					Project: Project{
+					Project: JiraProject{
 						Self: "https://your-domain.atlassian.net/rest/api/2/project/EX",
 						ID:   "10000",
 						Key:  "EX",
@@ -45,7 +45,7 @@ func TestJiraIssue(t *testing.T) {
 				Fields: JiraIssueFields{
 					Description: "Some description here",
 					Summary:     "Summary here",
-					Project: Project{
+					Project: JiraProject{
 						Self: "https://xxx.atlassian.net/rest/api/2/project/10401",
 						ID:   "10401",
 						Key:  "APPS",

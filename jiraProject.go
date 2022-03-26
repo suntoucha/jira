@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 )
 
-type Project struct {
+type JiraProject struct {
 	Self        string `json:"self"`
 	ID          string `json:"id"`
 	Key         string `json:"key"`
@@ -12,13 +12,13 @@ type Project struct {
 	Description string `json:"description"`
 }
 
-func ProjectFromJson(raw []byte) (Project, error) {
+func JiraProjectFromJson(raw []byte) (JiraProject, error) {
 	var (
-		prj Project
+		prj JiraProject
 	)
 
 	if err := json.Unmarshal(raw, &prj); err != nil {
-		return Project{}, err
+		return JiraProject{}, err
 	}
 
 	return prj, nil

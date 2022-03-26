@@ -10,14 +10,14 @@ import (
 //go:embed test_json/project1.json
 var projectJson1 string
 
-func TestProject(t *testing.T) {
+func TestJiraProject(t *testing.T) {
 	testcase := []struct {
 		Input  string
-		Result Project
+		Result JiraProject
 	}{
 		{
 			Input: projectJson1,
-			Result: Project{
+			Result: JiraProject{
 				Self:        "https://your-domain.atlassian.net/rest/api/2/project/EX",
 				ID:          "10000",
 				Key:         "EX",
@@ -28,7 +28,7 @@ func TestProject(t *testing.T) {
 	}
 
 	for _, x := range testcase {
-		tmp, err := ProjectFromJson([]byte(x.Input))
+		tmp, err := JiraProjectFromJson([]byte(x.Input))
 		if err != nil {
 			t.Errorf("ProjectFromJson error: %v", err)
 			continue
