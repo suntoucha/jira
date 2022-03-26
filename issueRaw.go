@@ -26,3 +26,13 @@ func (t *IssueRawTable) CursorAll() (*sqlx.Rows, error) {
 
 	return rows, err
 }
+
+func (t *IssueRawTable) Count() (int, error) {
+	var cnt struct {
+		Cnt int `db:"cnt"`
+	}
+
+	err := t.DB.Get(&cnt, "select count(1) cnt from issue_raw;")
+
+	return cnt.Cnt, err
+}

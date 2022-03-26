@@ -1,3 +1,5 @@
 .DS_Store
 exporter/secret.go
 exporter/exporter
+indexer/secret.go
+indexer/indexer
