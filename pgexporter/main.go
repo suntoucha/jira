@@ -6,6 +6,7 @@ import (
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 	"github.com/suntoucha/jira"
+	"github.com/suntoucha/jira/pgsql"
 	"time"
 )
 
@@ -27,33 +28,57 @@ func main() {
 		return
 	}
 
-	me := MyExporter{DB: db}
+	tableRaw := pgsql.IssueRawTable{DB: db}
+	tableFlat := pgsql.IssueFlatTable{DB: db}
+	me := MyExporter{Table: &tableRaw}
 	for _, x := range PRJLIST {
 		cli.ExportIssueByProject(x, 100, me)
+	}
+
+	rows, err := tableRaw.CursorAll()
+	if err != nil {
+		fmt.Println("Cursor error:", err)
+		return
+	}
+	for rows.Next() {
+		var (
+			tmp  jira.Issue
+			raw  pgsql.IssueRaw
+			flat pgsql.IssueFlat
+		)
+
+		if err = rows.StructScan(&raw); err != nil {
+			fmt.Println("Scan error", err)
+			return
+		}
+		fmt.Println(raw.Key)
+
+		if tmp, err = jira.IssueFromJson([]byte(raw.Raw)); err != nil {
+			fmt.Println("From json error:", err)
+			return
+		}
+
+		flat = pgsql.IssueToFlat(tmp)
+		if err = tableFlat.Insert(flat); err != nil {
+			fmt.Println("Insert error:", err)
+			return
+		}
 	}
 }
 
 type MyExporter struct {
-	DB *sqlx.DB
-}
-
-type IssueExport struct {
-	Key string          `db:"key"`
-	Raw json.RawMessage `db:"raw"`
+	Table *pgsql.IssueRawTable
 }
 
 func (me MyExporter) Export(raw json.RawMessage, index int, total int) error {
-	ins := `insert into issue(key, raw) values(:key, :raw);`
-
 	tmp, err := jira.IssueFromJson(raw)
 	if err != nil {
 		fmt.Println("IssueFromJson error:", err)
 		return err
 	}
 
-	exp := IssueExport{Key: tmp.Key, Raw: raw}
-	_, err = me.DB.NamedExec(ins, exp)
-	if err != nil {
+	x := pgsql.IssueRaw{Key: tmp.Key, Raw: string(raw)}
+	if err := me.Table.Insert(x); err != nil {
 		fmt.Println("Insert error:", err)
 		return err
 	}
