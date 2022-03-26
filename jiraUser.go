@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 )
 
-type User struct {
+type JiraUser struct {
 	Self         string `json:"self"`
 	Key          string `json:"key"`
 	AccountID    string `json:"accountId"`
@@ -13,13 +13,13 @@ type User struct {
 	DisplayName  string `json:"displayName"`
 }
 
-func UserFromJson(raw []byte) (User, error) {
+func JiraUserFromJson(raw []byte) (JiraUser, error) {
 	var (
-		user User
+		user JiraUser
 	)
 
 	if err := json.Unmarshal(raw, &user); err != nil {
-		return User{}, err
+		return JiraUser{}, err
 	}
 
 	return user, nil

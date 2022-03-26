@@ -57,37 +57,37 @@ func (cli *Client) Project(key string) (Project, error) {
 	return prj, nil
 }
 
-func (cli *Client) Issue(key string) (Issue, error) {
+func (cli *Client) Issue(key string) (JiraIssue, error) {
 	if err := IsValidKey(key); err != nil {
-		return Issue{}, err
+		return JiraIssue{}, err
 	}
 
 	raw, err := cli.get("/rest/api/2/issue/" + key)
 	if err != nil {
-		return Issue{}, err
+		return JiraIssue{}, err
 	}
 
-	iss, err := IssueFromJson(raw)
+	iss, err := JiraIssueFromJson(raw)
 	if err != nil {
-		return Issue{}, err
+		return JiraIssue{}, err
 	}
 
 	return iss, nil
 }
 
-func (cli *Client) IssueByProject(key string, startAt int, maxResults int) (IssueResult, error) {
+func (cli *Client) IssueByProject(key string, startAt int, maxResults int) (JiraIssueResult, error) {
 	if err := IsValidKey(key); err != nil {
-		return IssueResult{}, err
+		return JiraIssueResult{}, err
 	}
 
 	raw, err := cli.get("/rest/api/2/search?jql=project=" + key + "+order+by+key&startAt=" + strconv.Itoa(startAt) + "&maxResults=" + strconv.Itoa(maxResults))
 	if err != nil {
-		return IssueResult{}, err
+		return JiraIssueResult{}, err
 	}
 
-	res, err := IssueResultFromJson(raw)
+	res, err := JiraIssueResultFromJson(raw)
 	if err != nil {
-		return IssueResult{}, err
+		return JiraIssueResult{}, err
 	}
 
 	return res, nil

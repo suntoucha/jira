@@ -42,7 +42,7 @@ func main() {
 	}
 	for rows.Next() {
 		var (
-			tmp  jira.Issue
+			tmp  jira.JiraIssue
 			raw  pgsql.IssueRaw
 			flat pgsql.IssueFlat
 		)
@@ -53,7 +53,7 @@ func main() {
 		}
 		fmt.Println(raw.Key)
 
-		if tmp, err = jira.IssueFromJson([]byte(raw.Raw)); err != nil {
+		if tmp, err = jira.JiraIssueFromJson([]byte(raw.Raw)); err != nil {
 			fmt.Println("From json error:", err)
 			return
 		}
@@ -71,7 +71,7 @@ type MyExporter struct {
 }
 
 func (me MyExporter) Export(raw json.RawMessage, index int, total int) error {
-	tmp, err := jira.IssueFromJson(raw)
+	tmp, err := jira.JiraIssueFromJson(raw)
 	if err != nil {
 		fmt.Println("IssueFromJson error:", err)
 		return err

@@ -23,7 +23,7 @@ type IssueFlat struct {
 	Resolution  time.Time `db:"dt_resolution"`
 }
 
-func IssueToFlat(i jira.Issue) IssueFlat {
+func IssueToFlat(i jira.JiraIssue) IssueFlat {
 	var x IssueFlat
 
 	x.Key = i.Key

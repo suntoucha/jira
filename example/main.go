@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/suntoucha/jira"
+	"encoding/json"
 )
 
 var (
@@ -38,7 +39,7 @@ func main() {
 type MyExporter struct {
 }
 
-func (x MyExporter) Export(list jira.IssueList, startAt int, maxResult int, total int) error {
-	fmt.Printf("startAt %v, maxResult %v, total %v, issue-len %v\n", startAt, maxResult, total, len(list))
+func (x MyExporter) Export(raw json.RawMessage, startAt int, total int) error {
+	fmt.Printf("startAt %v, total %v, issue-len %v\n", startAt, total, len(raw))
 	return nil
 }

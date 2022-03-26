@@ -14,18 +14,18 @@ var issueJson1 string
 //go:embed test_json/issue2.json
 var issueJson2 string
 
-func TestIssue(t *testing.T) {
+func TestJiraIssue(t *testing.T) {
 	testcase := []struct {
 		Input  string
-		Result Issue
+		Result JiraIssue
 	}{
 		{
 			Input: issueJson1,
-			Result: Issue{
+			Result: JiraIssue{
 				ID:   "10002",
 				Self: "https://your-domain.atlassian.net/rest/api/2/issue/10002",
 				Key:  "ED-1",
-				Fields: IssueFields{
+				Fields: JiraIssueFields{
 					Description: "Main order flow broken",
 					Project: Project{
 						Self: "https://your-domain.atlassian.net/rest/api/2/project/EX",
@@ -38,11 +38,11 @@ func TestIssue(t *testing.T) {
 		},
 		{
 			Input: issueJson2,
-			Result: Issue{
+			Result: JiraIssue{
 				ID:   "20281",
 				Self: "https://xxx.atlassian.net/rest/api/2/issue/20281",
 				Key:  "APPS-22",
-				Fields: IssueFields{
+				Fields: JiraIssueFields{
 					Description: "Some description here",
 					Summary:     "Summary here",
 					Project: Project{
@@ -51,7 +51,7 @@ func TestIssue(t *testing.T) {
 						Key:  "APPS",
 						Name: "Apps",
 					},
-					Assignee: User{
+					Assignee: JiraUser{
 						Self:         "https://xxx.atlassian.net/rest/api/2/user?accountId=1",
 						Key:          "",
 						AccountID:    "accountId1",
@@ -59,7 +59,7 @@ func TestIssue(t *testing.T) {
 						EmailAddress: "",
 						DisplayName:  "Alexey Ka",
 					},
-					Reporter: User{
+					Reporter: JiraUser{
 						Self:         "https://xxx.atlassian.net/rest/api/2/user?accountId=2",
 						Key:          "",
 						AccountID:    "accountId2",
@@ -67,7 +67,7 @@ func TestIssue(t *testing.T) {
 						EmailAddress: "xxx@gmail.com",
 						DisplayName:  "Serge Ku",
 					},
-					Creator: User{
+					Creator: JiraUser{
 						Self:         "https://xxx.atlassian.net/rest/api/2/user?accountId=3",
 						Key:          "",
 						AccountID:    "accountId3",
@@ -75,12 +75,12 @@ func TestIssue(t *testing.T) {
 						EmailAddress: "aaa@gmail.com",
 						DisplayName:  "S K",
 					},
-					Status: IssueStatus{
+					Status: JiraIssueStatus{
 						Self:        "https://xxx.atlassian.net/rest/api/2/status/10112",
 						ID:          "10112",
 						Name:        "Готово",
 						Description: "",
-						StatusCategory: IssueStatusCategory{
+						StatusCategory: JiraIssueStatusCategory{
 							Self:      "https://xxx.atlassian.net/rest/api/2/statuscategory/3",
 							ID:        3,
 							Key:       "done",
@@ -88,7 +88,7 @@ func TestIssue(t *testing.T) {
 							Name:      "Done",
 						},
 					},
-					IssueType: IssueType{
+					IssueType: JiraIssueType{
 						Self:        "https://xxx.atlassian.net/rest/api/2/issuetype/10101",
 						ID:          "10101",
 						Name:        "Баг",
@@ -104,7 +104,7 @@ func TestIssue(t *testing.T) {
 	}
 
 	for _, x := range testcase {
-		tmp, err := IssueFromJson([]byte(x.Input))
+		tmp, err := JiraIssueFromJson([]byte(x.Input))
 		if err != nil {
 			t.Errorf("IssueFromJson error: %v", err)
 			continue

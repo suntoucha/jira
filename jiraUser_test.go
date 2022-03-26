@@ -10,14 +10,14 @@ import (
 //go:embed test_json/user1.json
 var userJson1 string
 
-func TestUser(t *testing.T) {
+func TestJiraUser(t *testing.T) {
 	testcase := []struct {
 		Input  string
-		Result User
+		Result JiraUser
 	}{
 		{
 			Input: userJson1,
-			Result: User{
+			Result: JiraUser{
 				Self:         "https://your-domain.atlassian.net/rest/api/2/user?accountId=5b10a2844c20165700ede21g",
 				AccountID:    "5b10a2844c20165700ede21g",
 				EmailAddress: "mia@example.com",
@@ -27,7 +27,7 @@ func TestUser(t *testing.T) {
 	}
 
 	for _, x := range testcase {
-		tmp, err := UserFromJson([]byte(x.Input))
+		tmp, err := JiraUserFromJson([]byte(x.Input))
 		if err != nil {
 			t.Errorf("UserFromJson error: %v", err)
 			continue

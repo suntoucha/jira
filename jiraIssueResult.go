@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 )
 
-type IssueResult struct {
+type JiraIssueResult struct {
 	Expand    string            `json:"expand"`
 	StartAt   int               `json:"startAt"`
 	MaxResult int               `json:"maxResults"`
@@ -12,25 +12,25 @@ type IssueResult struct {
 	Issues    []json.RawMessage `json:"issues"`
 }
 
-func IssueResultFromJson(raw []byte) (IssueResult, error) {
+func JiraIssueResultFromJson(raw []byte) (JiraIssueResult, error) {
 	var (
-		res IssueResult
+		res JiraIssueResult
 	)
 
 	if err := json.Unmarshal(raw, &res); err != nil {
-		return IssueResult{}, err
+		return JiraIssueResult{}, err
 	}
 
 	return res, nil
 }
 
-func (res *IssueResult) IssueList() (IssueList, error) {
+func (res *JiraIssueResult) IssueList() (JiraIssueList, error) {
 	var (
-		list IssueList
+		list JiraIssueList
 	)
 
 	for _, x := range res.Issues {
-		tmp, err := IssueFromJson(x)
+		tmp, err := JiraIssueFromJson(x)
 		if err != nil {
 			return nil, err
 		}
